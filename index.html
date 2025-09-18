@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Book — বিশ্বব্যাপী ব্যবসার সোশ্যাল নেটওয়ার্ক</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #06b6d4;
+            --accent-dark: #0891b2;
+            --muted: #94a3b8;
+            --glass: rgba(255,255,255,0.03);
+            --success: #10b981;
+            --error: #ef4444;
+            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            background: linear-gradient(180deg, #071024 0%, #071a2b 100%);
+            color: #e6eef6;
+            line-height: 1.6;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #042f36;
+            font-size: 18px;
+        }
+        
+        .search {
+            flex: 1;
+            margin: 0 18px;
+            max-width: 500px;
+        }
+        
+        input[type=text], input[type=email], input[type=password], textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--glass);
+            color: #e6eef6;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+        }
+        
+        button.btn {
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #042f36;
+            font-weight: 600;
+            border: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        button.btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        button.btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #e6eef6;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+        
+        .card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .feed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .post {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.2s ease;
+        }
+        
+        .post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+        
+        .meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: #082133;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+        
+        .title {
+            font-weight: 700;
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        footer {
+            padding: 24px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            margin-top: 40px;
+            background: var(--card);
+        }
+        
+        .flex {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        
+        #modalCard {
+            background: var(--card);
+            padding: 28px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .modal-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 22px;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #042f36;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: var(--error);
+            color: white;
+        }
+        
+        .notification.success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-top: 8px;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 240px 1fr;
+            }
+            
+            .right {
+                grid-column: 1 / -1;
+                margin-top: 20px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+            
+            .left {
+                order: 2;
+            }
+            
+            .right {
+                order: 3;
+                margin-top: 0;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px;
+            }
+            
+            .search {
+                width: 100%;
+                margin: 12px 0;
+                max-width: none;
+            }
+            
+            .flex {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .btn {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            #modalCard {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .container {
+                padding: 12px;
+            }
+            
+            .post {
+                padding: 16px;
+            }
+            
+            .avatar {
+                width: 44px;
+                height: 44px;
+            }
+        }
+        
+        /* Animation for new posts */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top: 3px solid var(--accent);
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .user-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+        
+        .status-dot.offline {
+            background: var(--muted);
+        }
+        
+        h4 {
+            margin-bottom: 16px;
+            color: var(--accent);
+            font-size: 18px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 16px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .post-action:hover {
+            color: var(--accent);
+        }
+        
+        .content {
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <div class="logo">BB</div>
+            <div>
+                <div style="font-weight: 700">Business Book</div>
+                <div class="muted">ব্যবসার জন্য বিশেষ সোশ্যাল নেটওয়ার্ক</div>
+            </div>
+        </div>
+        
+        <div class="search">
+            <input type="text" id="globalSearch" placeholder="পোস্ট, কোম্পানি, প্রোডাক্ট বা ট্যাগ খুঁজুন" />
+        </div>
+        
+        <div class="flex">
+            <button class="btn" id="openLogin"><i class="fas fa-user"></i> লগইন/রেজিস্টার</button>
+            <button class="btn" id="newPostBtn"><i class="fas fa-plus"></i> নতুন পোস্ট</button>
+            <button class="btn" id="uploadVideoBtn"><i class="fas fa-video"></i> ভিডিও আপলোড</button>
+            <button class="btn" id="marketplaceBtn"><i class="fas fa-store"></i> মার্কেটপ্লেস</button>
+            <button class="btn" id="analyticsBtn"><i class="fas fa-chart-line"></i> অ্যানালিটিক্স</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <aside class="left">
+            <div class="card">
+                <h4>ব্যবসায়িক টুলস</h4>
+                <ul>
+                    <li class="muted">মার্কেটপ্লেস</li>
+                    <li class="muted">সার্ভিস প্রোভাইডার</li>
+                    <li class="muted">বিজনেস টেমপ্লেট</li>
+                    <li class="muted">অ্যানালিটিক্স</li>
+                    <li class="muted">ট্রানজ্যাকশন</li>
+                </ul>
+            </div>
+            
+            <div class="card" style="margin-top:20px">
+                <h4>নির্দেশ ও নীতি</h4>
+                <p class="muted" style="font-size:14px">এই প্ল্যাটফর্মে শুধুমাত্র ব্যবসা সম্পর্কিত পোস্ট ও ভিডিও অনুমোদিত। নন-বিজনেস কনটেন্ট স্বয়ংক্রিয়ভাবে ব্লক/মুছে ফেলা হবে। ব্যবসার জন্য সেবা ও লেনদেন চালানোর জন্য KYC ভেরিফিকেশন প্রয়োজন হতে পারে।</p>
+            </div>
+        </aside>
+        
+        <section class="card feed-area">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+                <h2 style="margin:0">ফিড — ব্যবসা সম্পর্কিত পোস্ট</h2>
+                <div class="muted">শুধু যাচাইকৃত ব্যবসায়িক কনটেন্ট</div>
+            </div>
+            
+            <div id="feed" class="feed">
+                <!-- Posts will be loaded here -->
+            </div>
+            
+            <div id="emptyMsg" class="muted" style="text-align:center;margin-top:30px;padding:30px;background:rgba(255,255,255,0.02);border-radius:12px;">
+                <i class="fas fa-inbox" style="font-size:40px;margin-bottom:15px;opacity:0.5;"></i>
+                <div>কোনো পোস্ট নেই — নতুন পোস্ট করুন</div>
+            </div>
+            
+            <div id="loadingIndicator" class="muted" style="text-align:center;margin-top:20px;display:none;">
+                <div class="spinner" style="margin:0 auto;"></div>
+                <div style="margin-top:10px;">লোড হচ্ছে...</div>
+            </div>
+        </section>
+        
+        <aside class="right">
+            <div class="card">
+                <h4>বৈশিষ্ট্য</h4>
+                <ul>
+                    <li class="muted">ব্র্যান্ড পেজ</li>
+                    <li class="muted">প্রোডাক্ট লিস্টিং</li>
+                    <li class="muted">লাইভ ভিডিও/আপলোড</li>
+                    <li class="muted">সিকিউর ট্রানজ্যাকশন লিংক</li>
+                    <li class="muted">রিয়েল-টাইম অ্যানালিটিক্স</li>
+                </ul>
+            </div>
+            
+            <div class="card" style="margin-top:20px">
+                <h4>সাহায্য</h4>
+                <p class="muted" style="margin:0">যোগাযোগ: support@businessbook.example</p>
+            </div>
+            
+            <div class="card" style="margin-top:20px">
+                <h4>স্ট্যাটাস</h4>
+                <div class="user-status">
+                    <div class="status-dot offline" id="statusDot"></div>
+                    <div class="muted" id="userStatus">লগইন করা নেই</div>
+                </div>
+                <button class="btn btn-secondary" id="logoutBtn" style="display:none;width:100%;"><i class="fas fa-sign-out-alt"></i> লগআউট</button>
+            </div>
+        </aside>
+    </div>
+    
+    <footer>
+        © Business Book — বিশ্বজুড়ে ব্যবসা সহজ করার জন্য পূর্ণাঙ্গ প্ল্যাটফর্ম।
+    </footer>
+    
+    <!-- Modal for forms -->
+    <div id="modal" class="hide">
+        <div id="modalCard"></div>
+    </div>
+    
+    <!-- Notification -->
+    <div id="notification" class="notification hide"></div>
+    
+    <!-- Post template -->
+    <template id="postTemplate">
+        <div class="post fade-in">
+            <div class="meta">
+                <div class="avatar">B</div>
+                <div>
+                    <div class="title">__AUTHOR__</div>
+                    <div class="muted">__TIME__ • __CATEGORY__</div>
+                </div>
+            </div>
+            <div class="content">__CONTENT__</div>
+            <div class="muted">__EXTRA__</div>
+            <div class="post-actions">
+                <div class="post-action"><i class="far fa-heart"></i> <span>লাইক</span></div>
+                <div class="post-action"><i class="far fa-comment"></i> <span>কমেন্ট</span></div>
+                <div class="post-action"><i class="far fa-share-square"></i> <span>শেয়ার</span></div>
+            </div>
+        </div>
+    </template>
+    
+    <script>
+        // =========== CONFIG ============
+        // Using localStorage as a mock database for demo purposes
+        const API_BASE = 'https://api.example.com'; // This would be your actual backend API
+        
+        // =========== UTIL ============
+        function el(q) { return document.querySelector(q); }
+        function els(q) { return document.querySelectorAll(q); }
+        
+        function showModal(html) {
+            const m = document.getElementById('modal'),
+                  c = document.getElementById('modalCard');
+            c.innerHTML = html;
+            m.classList.remove('hide');
+        }
+        
+        function hideModal() {
+            document.getElementById('modal').classList.add('hide');
+        }
+        
+        function showNotification(message, type = 'success', duration = 3000) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notif.classList.remove('show');
+                setTimeout(() => notif.className = 'notification hide', 300);
+            }, duration);
+        }
+        
+        function formatTime(d) {
+            return new Date(d).toLocaleString('bn-BD', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // Client-side business keyword check
+        function passesBusinessFilter(content) {
+            if (!content) return false;
+            const biz = ['business', 'company', 'কোম্পানি', 'বিক্রয়', 'বাজার', 'startup', 'স্টার্টআপ', 
+                        'প্রোডাক্ট', 'সার্ভিস', 'ব্র্যান্ড', 'বিক্রি', 'নিয়োগ', 'চাকরি', 'বিনিয়োগ', 'ইনভেস্টর',
+                        'মুনাফা', 'লাভ', 'ব্যবসা', 'বাণিজ্য', 'market', 'product', 'service', 'investment',
+                        'entrepreneur', 'উদ্যোক্তা', 'কর্মসংস্থান', 'বাজারজাত', 'রপ্তানি', 'আমদানি'];
+            const lc = content.toLowerCase();
+            return biz.some(k => lc.includes(k)) || content.length > 30;
+        }
+        
+        function updateUserStatus() {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            const statusEl = document.getElementById('userStatus');
+            const statusDot = document.getElementById('statusDot');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            if (user) {
+                statusEl.textContent = `লগইন করেছেন: ${user.name}`;
+                statusDot.classList.remove('offline');
+                logoutBtn.style.display = 'block';
+                els('#openLogin i')[0].className = 'fas fa-user-check';
+                el('#openLogin').innerHTML = '<i class="fas fa-user-check"></i> প্রোফাইল';
+            } else {
+                statusEl.textContent = 'লগইন করা নেই';
+                statusDot.classList.add('offline');
+                logoutBtn.style.display = 'none';
+                els('#openLogin i')[0].className = 'fas fa-user';
+                el('#openLogin').innerHTML = '<i class="fas fa-user"></i> লগইন/রেজিস্টার';
+            }
+        }
+        
+        // =========== RENDER FEED ============
+        async function loadFeed() {
+            try {
+                el('#loadingIndicator').style.display = 'block';
+                el('#emptyMsg').style.display = 'none';
+                
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // For demo, we'll use localStorage
+                let posts = JSON.parse(localStorage.getItem('bb_posts') || '[]');
+                
+                const feedEl = el('#feed');
+                feedEl.innerHTML = '';
+                
+                if (!posts.length) {
+                    el('#emptyMsg').style.display = 'block';
+                    el('#loadingIndicator').style.display = 'none';
+                    return;
+                }
+                
+                el('#emptyMsg').style.display = 'none';
+                const tpl = document.getElementById('postTemplate').content;
+                
+                // Sort posts by date (newest first)
+                posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                posts.forEach(p => {
+                    const node = tpl.cloneNode(true);
+                    node.querySelector('.title').textContent = p.authorName || p.userId || 'ব্যবসা';
+                    node.querySelectorAll('.muted')[0].textContent = formatTime(p.createdAt || p.time) + ' • ' + (p.category || 'business');
+                    node.querySelector('.content').textContent = p.content || '';
+                    
+                    const tags = p.tags ? p.tags.map(t => `<span class="tag">#${t}</span>`).join('') : '';
+                    node.querySelectorAll('.muted')[1].innerHTML = tags;
+                    
+                    feedEl.appendChild(node);
+                });
+                
+                el('#loadingIndicator').style.display = 'none';
+            } catch(err) {
+                console.error(err);
+                el('#feed').innerHTML = '<div class="muted">ফিড লোড করতে সমস্যা হয়েছে</div>';
+                el('#loadingIndicator').style.display = 'none';
+            }
+        }
+        
+        // =========== AUTH UI ============
+        el('#openLogin').addEventListener('click', () => {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            if (user) {
+                // Show profile if logged in
+                showModal(`
+                    <h3 class="modal-title">আপনার প্রোফাইল</h3>
+                    <div style="text-align:center;margin:20px 0;">
+                        <div class="avatar" style="width:80px;height:80px;font-size:30px;margin:0 auto 15px;">${user.name.charAt(0)}</div>
+                        <h3>${user.name}</h3>
+                        <p class="muted">${user.email}</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" id="closeProfile">বন্ধ</button>
+                    </div>
+                `);
+                
+                document.getElementById('closeProfile').addEventListener('click', hideModal);
+                return;
+            }
+            
+            showModal(`
+                <h3 class="modal-title">অ্যাকাউন্টে প্রবেশ করুন</h3>
+                <div style="display:flex;gap:20px;flex-direction:column">
+                    <div>
+                        <h4>রেজিস্টার</h4>
+                        <div class="form-group">
+                            <input id="regName" placeholder="নাম" />
+                        </div>
+                        <div class="form-group">
+                            <input id="regEmail" placeholder="ই-মেইল" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <input id="regPass" type="password" placeholder="পাসওয়ার্ড" />
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn" id="doRegister">রেজিস্টার</button>
+                            <button class="btn btn-secondary" id="closeReg">বন্ধ</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>লগইন</h4>
+                        <div class="form-group">
+                            <input id="loginEmail" placeholder="ই-মেইল" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <input id="loginPass" type="password" placeholder="পাসওয়ার্ড" />
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn" id="doLogin">লগইন</button>
+                        </div>
+                    </div>
+                </div>
+            `);
+            
+            document.getElementById('closeReg').addEventListener('click', hideModal);
+            
+            document.getElementById('doRegister').addEventListener('click', async () => {
+                const name = el('#regName').value.trim();
+                const email = el('#regEmail').value.trim();
+                const pass = el('#regPass').value;
+                
+                if (!name || !email || !pass) return showNotification('সবগুলো ঘর পূরণ করুন', 'error');
+                if (pass.length < 6) return showNotification('পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে', 'error');
+                
+                try {
+                    // For demo, we'll just store in localStorage
+                    const users = JSON.parse(localStorage.getItem('bb_users') || '[]');
+                    if (users.some(u => u.email === email)) {
+                        return showNotification('এই ইমেইলটি ইতিমধ্যে নিবন্ধিত', 'error');
+                    }
+                    
+                    users.push({ name, email, password: pass });
+                    localStorage.setItem('bb_users', JSON.stringify(users));
+                    
+                    showNotification('রেজিস্ট্রেশন সফল — অনুগ্রহ করে লগইন করুন');
+                } catch(e) {
+                    showNotification('রেজিস্ট্রেশন এ সমস্যা', 'error');
+                }
+            });
+            
+            document.getElementById('doLogin').addEventListener('click', async () => {
+                const email = el('#loginEmail').value.trim();
+                const pass = el('#loginPass').value;
+                
+                if (!email || !pass) return showNotification('সবগুলো ঘর পূরণ করুন', 'error');
+                
+                try {
+                    // For demo, we'll check against localStorage
+                    const users = JSON.parse(localStorage.getItem('bb_users') || '[]');
+                    const user = users.find(u => u.email === email && u.password === pass);
+                    
+                    if (!user) {
+                        return showNotification('ইমেইল বা পাসওয়ার্ড ভুল', 'error');
+                    }
+                    
+                    // Mock token for demo
+                    localStorage.setItem('bb_token', 'demo-token-' + Date.now());
+                    localStorage.setItem('bb_user', JSON.stringify(user));
+                    
+                    showNotification('লগইন সফল');
+                    hideModal();
+                    updateUserStatus();
+                    loadFeed();
+                } catch(e) {
+                    showNotification('লগইন এ সমস্যা', 'error');
+                }
+            });
+        });
+        
+        // =========== NEW POST ============
+        el('#newPostBtn').addEventListener('click', () => {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            if (!user) {
+                showNotification('পোস্ট করতে লগইন করুন', 'error');
+                return;
+            }
+            
+            showModal(`
+                <h3 class="modal-title">নতুন পোস্ট (শুধু ব্যবসা সম্পর্কিত)</h3>
+                <div class="form-group">
+                    <textarea id="postContent" rows="6" placeholder="আপনার ব্যবসার আপডেট, প্রোডাক্ট, ক্যারিয়ার অ্যাপোর্ট..."></textarea>
+                </div>
+                <div class="form-group">
+                    <input id="postTags" placeholder="ট্যাগগুলো (কমা দিয়ে)" />
+                </div>
+                <div class="btn-group">
+                    <button class="btn" id="postSubmit"><i class="fas fa-paper-plane"></i> পোস্ট করুন</button>
+                    <button class="btn btn-secondary" id="postClose">বন্ধ</button>
+                </div>
+            `);
+            
+            document.getElementById('postClose').addEventListener('click', hideModal);
+            
+            document.getElementById('postSubmit').addEventListener('click', async () => {
+                const content = el('#postContent').value.trim();
+                const tags = el('#postTags').value.split(',').map(s => s.trim()).filter(Boolean);
+                
+                if (!content) return showNotification('পোস্টের内容 লিখুন', 'error');
+                if (!passesBusinessFilter(content)) {
+                    return showNotification('পোস্টটি ব্যবসা সম্পর্কিত বলে মনে হয় না — বিস্তারিত লিখুন বা ব্যবসায়িক শব্দ যোগ করুন।', 'error');
+                }
+                
+                try {
+                    // For demo, we'll store in localStorage
+                    const user = JSON.parse(localStorage.getItem('bb_user') || '{}');
+                    const posts = JSON.parse(localStorage.getItem('bb_posts') || '[]');
+                    
+                    posts.push({
+                        content,
+                        category: 'business',
+                        tags,
+                        authorName: user.name || 'ব্যবসায়িক ব্যবহারকারী',
+                        createdAt: new Date().toISOString()
+                    });
+                    
+                    localStorage.setItem('bb_posts', JSON.stringify(posts));
+                    
+                    showNotification('পোস্ট সফলভাবে তৈরি হয়েছে');
+                    hideModal();
+                    loadFeed();
+                } catch(e) {
+                    console.error(e);
+                    showNotification('পোস্ট করতে সমস্যা', 'error');
+                }
+            });
+        });
+        
+        // =========== VIDEO UPLOAD ============
+        el('#uploadVideoBtn').addEventListener('click', () => {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            if (!user) {
+                showNotification('ভিডিও আপলোড করতে লগইন করুন', 'error');
+                return;
+            }
+            
+            showModal(`
+                <h3 class="modal-title">ভিডিও আপলোড (ব্যবসা সম্পর্কিত)</h3>
+                <div class="form-group">
+                    <input type="file" id="videoFile" accept="video/*" />
+                </div>
+                <div class="form-group">
+                    <input id="videoTitle" placeholder="শিরোনাম" />
+                </div>
+                <div class="form-group">
+                    <textarea id="videoDesc" rows="4" placeholder="বর্ণনা (ব্যবসার উদ্দেশ্য)"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" id="videoSubmit"><i class="fas fa-upload"></i> আপলোড</button>
+                    <button class="btn btn-secondary" id="videoClose">বন্ধ</button>
+                </div>
+            `);
+            
+            document.getElementById('videoClose').addEventListener('click', hideModal);
+            
+            document.getElementById('videoSubmit').addEventListener('click', async () => {
+                const file = el('#videoFile').files[0];
+                const title = el('#videoTitle').value.trim();
+                const desc = el('#videoDesc').value.trim();
+                
+                if (!file) return showNotification('ভিডিও ফাইল সিলেক্ট করুন', 'error');
+                if (file.size > 200 * 1024 * 1024) return showNotification('সর্বোচ্চ 200MB অনুমোদিত', 'error');
+                if (!title) return showNotification('শিরোনাম লিখুন', 'error');
+                if (!passesBusinessFilter(desc + ' ' + title)) return showNotification('ভিডিও বর্ণনা ব্যবসা সম্পর্কিত নয়', 'error');
+                
+                try {
+                    // For demo, we'll just show a success message
+                    showNotification('ভিডিও আপলোড সফল (ডেমো মোড)');
+                    hideModal();
+                } catch(e) {
+                    console.error(e);
+                    showNotification('আপলোডে সমস্যা', 'error');
+                }
+            });
+        });
+        
+        // =========== MARKETPLACE ============
+        el('#marketplaceBtn').addEventListener('click', () => {
+            openMarketplace();
+        });
+        
+        async function openMarketplace() {
+            showModal(`
+                <h3 class="modal-title">মার্কেটপ্লেস</h3>
+                <div style="display:flex;gap:20px;flex-direction:column">
+                    <div>
+                        <h4>নতুন প্রোডাক্ট লিস্ট করুন</h4>
+                        <div class="form-group">
+                            <input id="mpName" placeholder="পণ্যের নাম" />
+                        </div>
+                        <div class="form-group">
+                            <input id="mpPrice" placeholder="দাম" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <input id="mpCurrency" placeholder="মুদ্রা (BDT, USD)" value="BDT" />
+                        </div>
+                        <div class="form-group">
+                            <textarea id="mpDesc" rows="4" placeholder="বর্ণনা"></textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn" id="mpCreate"><i class="fas fa-plus"></i> তৈরি করুন</button>
+                            <button class="btn btn-secondary" id="mpClose">বন্ধ</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>মার্কেটপ্লেস তালিকা</h4>
+                        <div id="mpList" style="max-height:300px;overflow:auto"></div>
+                    </div>
+                </div>
+            `);
+            
+            document.getElementById('mpClose').addEventListener('click', hideModal);
+            
+            document.getElementById('mpCreate').addEventListener('click', async () => {
+                const name = el('#mpName').value.trim();
+                const price = parseFloat(el('#mpPrice').value);
+                const currency = el('#mpCurrency').value.trim();
+                const desc = el('#mpDesc').value.trim();
+                
+                if (!name || isNaN(price) || !currency) return showNotification('সঠিক তথ্য দিন', 'error');
+                
+                try {
+                    // For demo, we'll store in localStorage
+                    const products = JSON.parse(localStorage.getItem('bb_products') || '[]');
+                    products.push({
+                        product_name: name,
+                        price,
+                        currency,
+                        description: desc,
+                        _id: 'demo-' + Date.now()
+                    });
+                    
+                    localStorage.setItem('bb_products', JSON.stringify(products));
+                    
+                    showNotification('প্রোডাক্ট তালিকাভুক্ত হয়েছে');
+                    loadMarketplace();
+                } catch(e) {
+                    showNotification('তৈরি করতে সমস্যা', 'error');
+                }
+            });
+            
+            loadMarketplace();
+        }
+        
+        async function loadMarketplace() {
+            try {
+                // For demo, we'll use localStorage
+                const data = JSON.parse(localStorage.getItem('bb_products') || '[]');
+                const list = el('#mpList');
+                list.innerHTML = '';
+                
+                if (data.length === 0) {
+                    list.innerHTML = '<div class="muted" style="padding:20px;text-align:center;">কোনো প্রোডাক্ট নেই</div>';
+                    return;
+                }
+                
+                data.forEach(it => {
+                    const div = document.createElement('div');
+                    div.style.padding = '16px';
+                    div.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                    div.style.borderRadius = '8px';
+                    div.style.marginBottom = '10px';
+                    div.style.background = 'rgba(255,255,255,0.02)';
+                    div.innerHTML = `
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                            <div>
+                                <b style="font-size:16px;">${it.product_name}</b>
+                                <div class="muted" style="margin-top:5px;">${it.price} ${it.currency}</div>
+                            </div>
+                            <button class="btn" onclick="createTransaction('${it._id}')" style="padding:8px 12px;"><i class="fas fa-shopping-cart"></i> কিনুন</button>
+                        </div>
+                        <div style="margin-top:10px;color:var(--muted);">${it.description || ''}</div>
+                    `;
+                    list.appendChild(div);
+                });
+            } catch(e) {
+                console.error(e);
+            }
+        }
+        
+        // =========== TRANSACTIONS ============
+        window.createTransaction = async function(productId) {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            if (!user) {
+                showNotification('লেনদেন করতে লগইন করুন', 'error');
+                return;
+            }
+            
+            const product = JSON.parse(localStorage.getItem('bb_products') || '[]')
+                .find(p => p._id === productId);
+            
+            if (!product) return;
+            
+            const confirmPurchase = confirm(`আপনি কি "${product.product_name}" কিনতে চান? মূল্য: ${product.price} ${product.currency}`);
+            
+            if (!confirmPurchase) return;
+            
+            try {
+                // For demo, we'll just show a success message
+                showNotification(`ক্রয় সফল: ${product.product_name} - ${product.price} ${product.currency}`);
+            } catch(e) {
+                showNotification('লেনদেন এ সমস্যা', 'error');
+            }
+        }
+        
+        // =========== ANALYTICS ============
+        el('#analyticsBtn').addEventListener('click', () => {
+            const user = JSON.parse(localStorage.getItem('bb_user') || 'null');
+            if (!user) {
+                showNotification('অ্যানালিটিক্স দেখতে লগইন করুন', 'error');
+                return;
+            }
+            
+            showModal(`
+                <h3 class="modal-title">অ্যানালিটিক্স ড্যাশবোর্ড</h3>
+                <div style="background:rgba(255,255,255,0.02);padding:20px;border-radius:12px;margin-bottom:20px;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+                        <div>
+                            <div class="muted">মোট পোস্ট</div>
+                            <div style="font-size:24px;font-weight:bold;">${JSON.parse(localStorage.getItem('bb_posts') || '[]').length}</div>
+                        </div>
+                        <div>
+                            <div class="muted">মোট প্রোডাক্ট</div>
+                            <div style="font-size:24px;font-weight:bold;">${JSON.parse(localStorage.getItem('bb_products') || '[]').length}</div>
+                        </div>
+                    </div>
+                    <div style="background:var(--accent);height:10px;border-radius:5px;margin-top:20px;"></div>
+                </div>
+                <p class="muted" style="text-align:center;">বিস্তারিত অ্যানালিটিক্স শীঘ্রই আসছে!</p>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="analyticsClose">বন্ধ</button>
+                </div>
+            `);
+            
+            document.getElementById('analyticsClose').addEventListener('click', hideModal);
+        });
+        
+        // =========== SEARCH ============
+        el('#globalSearch').addEventListener('input', (e) => {
+            const q = e.target.value.trim().toLowerCase();
+            const posts = document.querySelectorAll('#feed .post');
+            
+            if (q === '') {
+                posts.forEach(p => p.style.display = '');
+                return;
+            }
+            
+            let found = false;
+            posts.forEach(p => {
+                const text = p.innerText.toLowerCase();
+                if (text.includes(q)) {
+                    p.style.display = '';
+                    found = true;
+                } else {
+                    p.style.display = 'none';
+                }
+            });
+            
+            if (!found) {
+                el('#emptyMsg').style.display = 'block';
+                el('#emptyMsg').innerHTML = `"${q}" এর সাথে মিলে এমন কোনো পোস্ট পাওয়া যায়নি`;
+            } else {
+                el('#emptyMsg').style.display = 'none';
+            }
+        });
+        
+        // =========== LOGOUT ============
+        el('#logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('bb_token');
+            localStorage.removeItem('bb_user');
+            showNotification('লগআউট সফল');
+            updateUserStatus();
+            loadFeed();
+        });
+        
+        // =========== INIT SAMPLE DATA ============
+        // Initialize with some sample posts if none exist
+        if (!localStorage.getItem('bb_posts')) {
+            const samplePosts = [
+                {
+                    content: "আমাদের নতুন স্টার্টআপে সফটওয়্যার ডেভেলপারদের প্রয়োজন। যোগাযোগ করুন careers@techbangla.com",
+                    category: "business",
+                    tags: ["নিয়োগ", "টেক", "স্টার্টআপ"],
+                    authorName: "টেক বাংলা",
+                    createdAt: new Date(Date.now() - 3600000).toISOString()
+                },
+                {
+                    content: "বাংলাদেশি হ্যান্ডিক্রাফ্ট পণ্য এখন বিশ্বব্যাপী উপলব্ধ। অর্ডার করতে ভিজিট করুন www.craftsbd.com",
+                    category: "business",
+                    tags: ["হ্যান্ডিক্রাফ্ট", "রপ্তানি", "পণ্য"],
+                    authorName: "ক্রাফ্টস বাংলাদেশ",
+                    createdAt: new Date(Date.now() - 7200000).toISOString()
+                },
+                {
+                    content: "আমাদের কোম্পানি নতুন বিনিয়োগের সন্ধানে। আগ্রহী বিনিয়োগকারীরা যোগাযোগ করুন invest@venturebd.com",
+                    category: "business",
+                    tags: ["বিনিয়োগ", "স্টার্টআপ", "ফান্ডিং"],
+                    authorName: "ভেঞ্চার বাংলাদেশ",
+                    createdAt: new Date(Date.now() - 10800000).toISOString()
+                }
+            ];
+            localStorage.setItem('bb_posts', JSON.stringify(samplePosts));
+        }
+        
+        // Initialize with some sample products if none exist
+        if (!localStorage.getItem('bb_products')) {
+            const sampleProducts = [
+                {
+                    product_name: "হ্যান্ডমেড পটারি সেট",
+                    price: 2500,
+                    currency: "BDT",
+                    description: "বাংলাদেশের ঐতিহ্যবাহী হস্তশিল্প থেকে তৈরি মাটির পাত্রের সেট",
+                    _id: 'demo-product-1'
+                },
+                {
+                    product_name: "ওয়েবসাইট ডেভেলপমেন্ট",
+                    price: 15000,
+                    currency: "BDT",
+                    description: "পেশাদার ব্যবসায়িক ওয়েবসাইট ডেভেলপমেন্ট সার্ভিস",
+                    _id: 'demo-product-2'
+                }
+            ];
+            localStorage.setItem('bb_products', JSON.stringify(sampleProducts));
+        }
+        
+        // Initialize with some sample users if none exist
+        if (!localStorage.getItem('bb_users')) {
+            const sampleUsers = [
+                {
+                    name: "রিয়াদ হাসান",
+                    email: "riad@example.com",
+                    password: "password123"
+                }
+            ];
+            localStorage.setItem('bb_users', JSON.stringify(sampleUsers));
+        }
+        
+        // Load feed on start
+        loadFeed();
+        updateUserStatus();
+        
+        // Close modal when background clicked
+        document.getElementById('modal').addEventListener('click', (ev) => {
+            if (ev.target.id === 'modal') hideModal();
+        });
+    </script>
+</body>
+</html>
